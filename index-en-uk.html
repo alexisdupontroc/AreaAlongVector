@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Area Along Vector - Help</title>
+</head>
+<body>
+
+<p><b>Area Along Vector</b></p>
+
+<p style='text-align:justify'>This plugin draws rectangle areas along polylines according to field values.
+It was developed in order to show car traffic volumes on a road network.
+Since a road has most often two ways, drawing a rectangle on each side,
+proportional to volume values, offered a good solution.</p>
+
+<img width=184 height=197 src="img/image001.png"></img>
+<img width=184 height=197 src="img/image002.png"></img>
+<img width=184 height=197 src="img/image003.png"></img>
+
+
+<p><b><i>What does the plugin do?</i></b></p>
+
+<p style='text-align:justify'>For each vector of the vector layer,
+two rectangles are created: one on the right side
+for the forth value, the other on the left for the return value.
+Rectangles widths are proportional to values read from the selected
+fields (for example VOL and R_VOL). The resulting rectangles are stored in a
+new layer.</p>
+
+<p><b><i>How does it work?</i></b></p>
+
+<p style='text-align:justify'>Select a vector layer with two fields containing back and forth values.
+Change parameters values to adjust rendering. Information of the minimum and maximum
+values to be drawn is displayed. User can thus adjust accordingly the minimum
+and maximum width of the rectangles. User can also set the limit under (over)
+which the minimum (maximum) width is always used. For example, if maximum limit
+is set to 500, all fields with values above 500 will be displayed with the same
+rectangle width (equal to the maximum limit width parameter).</p>
+
+<p>A new shape file containing the rectangles is created and added to the canvas.</p>
+
+
+<body>
+</html>

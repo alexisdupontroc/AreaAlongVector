@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/areaalongvector" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>

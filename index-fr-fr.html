@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Area Along Vector - Aide</title>
+</head>
+<body>
+
+<p><b>Area Along Vector</b></p>
+
+<p style='text-align:justify'>Cette extension permet de dessiner des rectangles
+le long de polylignes en fonction de valeurs de champs données. Elle a été développée
+pour représenter des volumes de trafic sur un réseau routier. Afin d’illustrer les
+valeurs pour les deux sens de circulation, des rectangles aux largeurs proportionnelles
+sont dessinés de part et d’autre des vecteurs du réseau.</p>
+
+<img width=184 height=197 src="img/image001.png"></img>
+<img width=184 height=197 src="img/image002.png"></img>
+<img width=184 height=197 src="img/image003.png"></img>
+
+
+<p><b><i>Ce que fait l’extension ?</i></b></p>
+
+<p style='text-align:justify'>Pour chaque segment des polylignes, deux rectangles sont créés :
+un pour le sens aller (sur la droite), l’autre pour le sens retour (sur la gauche).
+La largeur des rectangles est proportionnelle aux valeurs des champs choisis
+(par exemple VOL et R_VOL). Le résultat est affiché dans une nouvelle couche.</p>
+
+<p><b><i>Mode d’emploi ?</i></b></p>
+
+<p style='text-align:justify'>Sélectionner une couche de vecteurs avec deux champs contenant
+les valeurs de chaque sens. Changer les paramètres pour ajuster le rendu. L’interface affiche
+les valeurs minimum et maximum des champs sélectionnés. Un seuil haut et bas permettent de
+définir les limites au-delà desquelles les largeurs appliquées sont constantes
+(les largeurs seuil sont utilisées).</p>
+
+<p>Un nouveau fichier shape contenant les rectangles est créé.</p>
+
+
+<body>
+</html>
