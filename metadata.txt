@@ -26,9 +26,9 @@ email=alexis.dupont-roc@internet.lu
 # tags are comma separated with spaces allowed
 tags=routing, network analysis, vector, area, label 
 
-homepage=-
-tracker=-
-repository=-
+homepage=https://github.com/alexisdupontroc/AreaAlongVector
+tracker=https://github.com/alexisdupontroc/AreaAlongVector/issues
+repository=https://github.com/alexisdupontroc/AreaAlongVector
 icon=icon.png
 # experimental flag
 experimental=True
