@@ -12,7 +12,7 @@
 name=Area Along Vector
 qgisMinimumVersion=2.0
 description=Create an area along a vector depending on a field value. Right and left sides can be distinguished.
-version=0.1
+version=0.1-beta
 author=Alexis Dupont-Roc
 email=alexis.dupont-roc@internet.lu
 
