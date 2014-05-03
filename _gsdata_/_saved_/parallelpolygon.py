@@ -1,27 +1,6 @@
 #! python3
-# -*- coding: utf-8 -*-
 
-"""
-/***************************************************************************
- ParallelPolygon
-                                 A QGIS plugin
- Create an area along a vector depending on a field value. Right and left sides can be distinguished.
-                             -------------------
-        begin                : 2012-02-22
-        copyright            : (C) 2012 by Alexis Dupont-Roc
-        email                : alexis.dupont-roc@internet.lu
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
-
+# -*- coding: latin1 -*-
 # Import the PyQt and QGIS libraries
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -96,3 +75,4 @@ def calculateLeftPolygon(p1, p2, dist):
 
     points = [p2, p1, p4, p3]
     return points
+

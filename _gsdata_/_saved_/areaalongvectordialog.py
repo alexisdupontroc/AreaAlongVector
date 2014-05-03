@@ -1,6 +1,3 @@
-#! python3
-# -*- coding: utf-8 -*-
-
 """
 /***************************************************************************
  AreaAlongVectorDialog
@@ -48,17 +45,6 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
         # selected layer
         self.vlayer = self.mc.currentLayer()
 
-        # Clear form
-        self.ui.comboBox_inputlayer.clear()
-        self.ui.lineEdit_minvalue.setText("0")
-        self.ui.lineEdit_maxvalue.setText("0")
-        self.ui.label_11.setText("0")
-        self.ui.label_12.setText("0")
-
-        # Default Parameters
-        self.ui.lineEdit_minvaluewidth.setText("0.2")
-        self.ui.lineEdit_maxvaluewidth.setText("10")
-
         # UI CCONNECTORS
         self.ui.buttonBox.accepted.connect(self.run)
         self.ui.buttonBox.rejected.connect(self.close)
@@ -73,8 +59,13 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
         #vector_line_layers = self.get_useful_layers()
 
         # Populate comboboxes
+        self.ui.comboBox_inputlayer.clear()
         #self.ui.comboBox_inputlayer.addItems(vector_line_layers)
         #self.update_working_layer()
+
+        # Default Parameters
+        self.ui.lineEdit_minvaluewidth.setText("0.2")
+        self.ui.lineEdit_maxvaluewidth.setText("10")
         #self.update_min_max_values()
 
     def init_before_show(self):
@@ -105,7 +96,6 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
 
     def get_useful_layers(self):
         """
-        Code inspired from Alexandre Neto / Cascais Ambiente
         Purpose: iterate the map legend and return a list of line vector layers (with fields)
         and a list of raster layers.
         vector_line_layers is like {Layer1name:[Layer 1,[fileld1, field2, ...]], Layer2Name: [Layer 2,[fileld1, field2, ...]],...}
@@ -120,10 +110,8 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
                 fields = provider.fields()
                 # get vector layer fields
                 for field in fields:
-                    if (field.type() == QVariant.Int or field.type() == QVariant.Double):
-                        fields_names.append(field.name())
+                    fields_names.append(field.name())
                 layer_info += [fields_names]
-                #self.vector_line_layers[str(unicode(layer.name(), "utf-8"))] = layer_info
                 self.vector_line_layers[str(layer.name())] = layer_info
             else:
                 pass
@@ -131,13 +119,16 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
         return vector_line_layers
 
     def update_fields(self):
+        """
+        Purpose: refresh list of available fields in update fields
+        """
         self.update_working_layer()
         self.ui.comboBox_forthfield.clear()
         self.ui.comboBox_backfield.clear()
         line_layer_fields = self.vector_line_layers[self.ui.comboBox_inputlayer.currentText()][1]
         self.ui.comboBox_forthfield.addItems(line_layer_fields)
         self.ui.comboBox_backfield.addItems(line_layer_fields)
-        # auto select UVP and R_UVP fields if they exist
+        # auto select time and time_rev fields if they exist
         if 'UVP' in line_layer_fields:
             index = line_layer_fields.index('UVP')
             self.ui.comboBox_forthfield.setCurrentIndex(index)
@@ -166,28 +157,26 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
 
     def update_min_max_values(self):
         if self.vlayer:
-
+            features = self.vlayer.getFeatures()
             f1 = self.ui.comboBox_forthfield.currentText()
             f2 = self.ui.comboBox_backfield.currentText()
             maxvalue = 0
-            minvalue = 0
+            #feat = QgsFeature()
+            for feat in features:
+                currentmaxvalue = max(feat[f1], feat[f2])
+                if (currentmaxvalue > maxvalue):
+                    maxvalue = currentmaxvalue
 
-            # If no valid field found : set min and max to 0
-            if (f1 != "" and f2 != ""):
-                # else get min and max values from selected fields
-                features = self.vlayer.getFeatures()
-                for feat in features:
-                    currentmaxvalue = max(feat[f1], feat[f2])
-                    if (currentmaxvalue > maxvalue):
-                        maxvalue = currentmaxvalue
-                minvalue = maxvalue
-                features = self.vlayer.getFeatures()
-                for feat in features:
-                    currentminvalue = min(feat[f1], feat[f2])
-                    if (currentminvalue < minvalue):
-                        minvalue = currentminvalue
+            minvalue = maxvalue
+            features = self.vlayer.getFeatures()
+            for feat in features:
+                currentminvalue = min(feat[f1], feat[f2])
+                if (currentminvalue < minvalue):
+                    minvalue = currentminvalue
 
             # update Form Labels and Fields
+            #self.lineEdit_minvalue.setText("50")
+            #self.lineEdit_maxvalue.setText("1500")
             self.ui.lineEdit_minvalue.setText(str(minvalue))
             self.ui.lineEdit_maxvalue.setText(str(maxvalue))
             self.ui.label_11.setText(str(minvalue))

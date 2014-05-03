@@ -47,39 +47,38 @@ class AreaAlongVector:
         # initialize locale
         locale = QSettings().value("locale/userLocale")[0:2]
         localePath = os.path.join(self.plugin_dir, 'i18n', 'test_{}.qm'.format(locale))
+
         if os.path.exists(localePath):
             self.translator = QTranslator()
             self.translator.load(localePath)
+
             if qVersion() > '4.3.3':
                 QCoreApplication.installTranslator(self.translator)
 
         self.dlg = AreaAlongVectorDialog(self.iface)
+        #self.dlg = AreaAlongVectorDialog()
 
     def initGui(self):
         # Create action that will start plugin configuration
         self.action = QAction(QIcon(":/plugins/areaalongvector/icon.png"), "Area along vector", self.iface.mainWindow())
         self.action_help = QAction(QIcon(":/plugins/areaalongvector/bouee.png"), "Help ...", self.iface.mainWindow())
-        self.action_example = QAction(QIcon(":/plugins/areaalongvector/example.png"), "Example", self.iface.mainWindow())
         #self.action_about = QAction(QIcon(":/plugins/areaalongvector/info.png"), "About", self.iface.mainWindow())
 
         # connect the action to the run method
         self.action.triggered.connect(self.run)
         self.action_help.triggered.connect(self.show_help)
-        self.action_example.triggered.connect(self.run_example)
         #self.action_about.triggered.connect(self.show_about)
 
         # Add toolbar button and menu item
         self.iface.addToolBarIcon(self.action)
         self.iface.addPluginToVectorMenu("&Area along vector", self.action)
         self.iface.addPluginToVectorMenu("&Area along vector", self.action_help)
-        self.iface.addPluginToVectorMenu("&Area along vector", self.action_example)
         #self.iface.addPluginToVectorMenu("&Area along vector", self.action_about)
 
     def unload(self):
         # Remove the plugin menu item and icon
         self.iface.removePluginVectorMenu("&Area along vector", self.action)
         self.iface.removePluginVectorMenu("&Area along vector", self.action_help)
-        self.iface.removePluginVectorMenu("&Area along vector", self.action_example)
         #self.iface.removePluginVectorMenu("&Area along vector", self.action_about)
         self.iface.removeToolBarIcon(self.action)
 
@@ -87,17 +86,10 @@ class AreaAlongVector:
         # Show help
         showPluginHelp()
 
-    #def show_about(self):
-        ## Show About
-        #d = aboutdialog.AboutDialog()
-        #d.exec_()
-
-    def run_example(self):
-        # Add example Layer
-        pluginDir = os.path.dirname(__file__)
-        exampleLayerName = pluginDir + "/Examples/AreaAlongVectorTestFile.shp"
-        self.iface.addVectorLayer(exampleLayerName, "Example", "ogr")
-        self.run()
+    def shwo_about(self):
+        # Show About
+        d = aboutdialog.AboutDialog()
+        d.exec_()
 
     # run method that performs all the real work
     def run(self):

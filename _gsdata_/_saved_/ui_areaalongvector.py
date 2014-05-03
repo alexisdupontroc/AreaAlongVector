@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_areaalongvector.ui'
 #
-# Created: Sat May 03 14:46:52 2014
+# Created: Sat May 03 14:16:25 2014
 #      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!

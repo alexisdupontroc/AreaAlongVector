@@ -2,7 +2,6 @@
     <qresource prefix="/plugins/areaalongvector" >
         <file>icon.png</file>
 		<file>bouee.png</file>
-		<file>example.png</file>
 		<file>info.png</file>
     </qresource>
 </RCC>

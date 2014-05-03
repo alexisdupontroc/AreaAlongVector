@@ -332,9 +332,6 @@
       <height>20</height>
      </rect>
     </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
    </widget>
    <widget class="QPushButton" name="pushButtonBrowseOutput">
     <property name="geometry">

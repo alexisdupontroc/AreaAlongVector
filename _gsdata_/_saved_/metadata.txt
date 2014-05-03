@@ -12,7 +12,7 @@
 name=Area Along Vector
 qgisMinimumVersion=2.0
 description=Create an area along a vector depending on a field value. Right and left sides can be distinguished.
-version=1.0
+version=0.1-beta
 author=Alexis Dupont-Roc
 email=alexis.dupont-roc@internet.lu
 
@@ -24,16 +24,15 @@ email=alexis.dupont-roc@internet.lu
 # changelog=
 
 # tags are comma separated with spaces allowed
-tags=routing, network analysis, vector, area, label
+tags=routing, network analysis, vector, area, label 
 
 homepage=https://github.com/alexisdupontroc/AreaAlongVector
 tracker=https://github.com/alexisdupontroc/AreaAlongVector/issues
 repository=https://github.com/alexisdupontroc/AreaAlongVector
 icon=icon.png
 # experimental flag
-experimental=False
+experimental=True
 
 # deprecated flag (applies to the whole plugin, not just a single version
 deprecated=False
 
-category=Vector
