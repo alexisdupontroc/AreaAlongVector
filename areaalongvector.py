@@ -214,6 +214,13 @@ class AreaAlongVector:
                     # Read field values as int
                     fieldValueForth = feat[f1_name]
                     fieldValueBack = feat[f2_name]
+                    
+                    # Transform NULL values to 0
+                    if not fieldValueForth:
+                        fieldValueForth = 0
+                    
+                    if not fieldValueBack:
+                        fieldValueBack = 0
 
                     # Distance calculation
                     distR = calculateDistance(fieldValueForth, userminlimit, userminwidth, usermaxlimit, usermaxwidth)

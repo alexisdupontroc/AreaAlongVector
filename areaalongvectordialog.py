@@ -41,7 +41,16 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
         self.ui.setupUi(self)
         self.iface = iface
         self.settings = QSettings()
-
+        
+        # i18n support // Translation
+        overrideLocale = QSettings().value("locale/overrideFlag", False)
+        localeFullName = QLocale.system().name() if not overrideLocale else QSettings().value("locale/userLocale", "")
+        self.localePath = os.path.dirname(__file__) + "/i18n/areaalongvector_" + localeFullName[0:2] + ".qm"
+        if QFileInfo(self.localePath).exists():
+            self.translator = QTranslator()
+            self.translator.load(self.localePath)
+            QCoreApplication.installTranslator(self.translator)
+                
         self.mc = self.iface.mapCanvas()
         self.legend = self.iface.legendInterface()
         self.loaded_layers = self.legend.layers()
@@ -123,8 +132,7 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
                     if (field.type() == QVariant.Int or field.type() == QVariant.Double):
                         fields_names.append(field.name())
                 layer_info += [fields_names]
-                #self.vector_line_layers[str(unicode(layer.name(), "utf-8"))] = layer_info
-                self.vector_line_layers[str(layer.name())] = layer_info
+                self.vector_line_layers[unicode(layer.name())] = layer_info
             else:
                 pass
         vector_line_layers = list(self.vector_line_layers)
@@ -177,13 +185,25 @@ class AreaAlongVectorDialog(QtGui.QDialog, Ui_AreaAlongVector):
                 # else get min and max values from selected fields
                 features = self.vlayer.getFeatures()
                 for feat in features:
-                    currentmaxvalue = max(feat[f1], feat[f2])
+                    featf1value = feat[f1]
+                    featf2value = feat[f2]
+                    if not featf1value:
+                        featf1value = 0
+                    if not featf2value:
+                        featf2value = 0
+                    currentmaxvalue = max(featf1value, featf2value)
                     if (currentmaxvalue > maxvalue):
                         maxvalue = currentmaxvalue
                 minvalue = maxvalue
                 features = self.vlayer.getFeatures()
                 for feat in features:
-                    currentminvalue = min(feat[f1], feat[f2])
+                    featf1value = feat[f1]
+                    featf2value = feat[f2]
+                    if not featf1value:
+                        featf1value = 0
+                    if not featf2value:
+                        featf2value = 0
+                    currentminvalue = min(featf1value, featf2value)
                     if (currentminvalue < minvalue):
                         minvalue = currentminvalue
 

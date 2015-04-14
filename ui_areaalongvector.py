@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'ui_areaalongvector.ui'
 #
-# Created: Sat May 03 14:46:52 2014
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Mon Apr 13 21:10:14 2015
+#      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -27,6 +27,13 @@ class Ui_AreaAlongVector(object):
     def setupUi(self, AreaAlongVector):
         AreaAlongVector.setObjectName(_fromUtf8("AreaAlongVector"))
         AreaAlongVector.resize(411, 367)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(AreaAlongVector.sizePolicy().hasHeightForWidth())
+        AreaAlongVector.setSizePolicy(sizePolicy)
+        AreaAlongVector.setMinimumSize(QtCore.QSize(411, 367))
+        AreaAlongVector.setMaximumSize(QtCore.QSize(411, 367))
         self.buttonBox = QtGui.QDialogButtonBox(AreaAlongVector)
         self.buttonBox.setGeometry(QtCore.QRect(210, 330, 181, 21))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
